@@ -1,0 +1,114 @@
+---
+title: "Data Wrangling with R <br/><br/><br/><br/><br/>"
+title-slide-attributes:
+    data-background-image: images/lts_logo.jpg
+    data-background-size: "30%"
+    data-background-opacity: "0.90"
+    data-background-position: "50% 45%"
+format:
+   revealjs:
+     theme: [dark, custom.scss]
+     code-fold: false
+     slide-number: c
+     controls: true
+     css: custom.css
+     menu: {
+      side: 'left',
+      numbers: true,
+      markers: true,
+      width: 'normal',
+      hideMissingTitles: true,
+      titleSelector: ''}
+preview-links: auto
+---
+
+## About this presentation {data-menu-title="About"}
+
+::: columns
+-   This seminar is the second in a series on [**R programming**]{style="color:#edea2b"}.
+
+-   It's targeted at people that took the first seminar, or have programming experience.
+
+::: fragment
+-   By the end of this presentation, you should know how to [**wrangle**]{style="color:#edea2b"} data in R.
+
+      - Import
+      - Explore
+      - Clean
+      - Summarize
+      - Analyze
+:::
+
+::: fragment
+-   Raw code available on [Github](https://github.com/jeremymack-LU/rwrangling/blob/main/index.qmd)
+:::
+:::
+
+![](images/data_cowboy.png){.absolute bottom="0" right="0" width="50%"}
+
+## Structure of the presentation {data-menu-title="Presentation outline"}
+
+The presentation is split into seven topics:
+
+::: fragment
+-   Topic 1:    RStudio Projects
+:::
+
+::: fragment
+-   Topic 2:    Data wrangling - [**base R**]{style="color:#edea2b"}
+
+-   Topic 3:    Tidyverse
+
+-   Topic 4:    Data wrangling - [**Tidyverse**]{style="color:#edea2b"}
+
+-   Topic 5:    Piping methods
+:::
+
+::: fragment
+-   Topic 6:    Additional resources
+:::
+
+![](images/r_learners.png){.absolute bottom="0" right="0" width="50%" height="50%"}
+
+# Topic 1 {data-menu-title="Topic 1"}
+
+[RStudio Projects]{style="font-size: 1.5em; text-align: center"}
+
+## RStudio Projects {data-menu-title="RStudio Projects"}
+
+![](images/rproject.png){.absolute top="0" right="0" width="33%"}
+![](images/cracked_setwd.png){.absolute bottom="0" right="0" width="33%"}
+
+Basic steps to working with ([wrangle]{style="color:#edea2b"}) data in R:
+
+::: {.fragment .fade-in-then-out}
+- Check and/or set a working directory.
+
+- Load data.
+
+- Wrangle data (Explore, Summarize, and Analyze)!
+:::
+
+::: {.absolute top="101" left="0"}
+::: fragment  
+- ~~Check and/or set a working directory.~~&nbsp;&nbsp;Set up RStudio Project.
+
+- Load data.
+
+- Wrangle data (Explore, Summarize, and Analyze)!
+:::
+:::
+
+::: fragment
+- **RStudio Projects**:
+
+    - [**Projects**]{style="color:#edea2b"} keep all files associated with a project together
+    - "Home" directory of the project becomes the current</br>working directory
+    - Projects can [**enhance reproducibility**]{style="color:#edea2b"} if *paths within scripts</br>are kept relative and not absolute*.
+:::
+
+# Topic 2 {data-menu-title="Topic 2"}
+
+[Data wrangling - [**base R**]{style="color:#edea2b"}]{style="font-size: 1.5em; text-align: center"}
+
+## Data wrangling - [**base R**]{style="color:#edea2b"} {data-menu-title="base R"}
