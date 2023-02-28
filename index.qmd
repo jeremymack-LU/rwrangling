@@ -79,10 +79,10 @@ The presentation is split into seven topics:
 ![](images/rproject.png){.absolute top="0" right="0" width="33%"}
 ![](images/cracked_setwd.png){.absolute bottom="0" right="0" width="33%"}
 
-Basic steps to working with ([wrangle]{style="color:#edea2b"}) data in R:
+Basic steps to working with ([**wrangle**]{style="color:#edea2b"}) data in R:
 
 ::: {.fragment .fade-in-then-out}
-- Check and/or set a working directory.
+- Check or set a working directory.
 
 - Load data.
 
@@ -91,7 +91,7 @@ Basic steps to working with ([wrangle]{style="color:#edea2b"}) data in R:
 
 ::: {.absolute top="101" left="0"}
 ::: fragment  
-- ~~Check and/or set a working directory.~~&nbsp;&nbsp;Set up RStudio Project.
+- ~~Check or set a working directory.~~&nbsp;&nbsp;Set up an [**RStudio Project**]{style="color:#edea2b"}.
 
 - Load data.
 
