@@ -30,11 +30,10 @@ preview-links: auto
 -   It's targeted at people that took the first seminar, or have programming experience.
 
 ::: fragment
--   By the end of this presentation, you should know how to [**wrangle**]{style="color:#edea2b"} data in R.
+-   By the end of this presentation, you should know how to [**wrangle**]{style="color:#edea2b"} data in R:
 
-      - Import
       - Explore
-      - Clean
+      - Tidy
       - Summarize
       - Analyze
 :::
@@ -48,27 +47,39 @@ preview-links: auto
 
 ## Structure of the presentation {data-menu-title="Presentation outline"}
 
-The presentation is split into seven topics:
+The presentation is split into five topics:
 
 ::: fragment
 -   Topic 1:    RStudio Projects
+
+-   Topic 2:    Tidyverse
 :::
 
 ::: fragment
--   Topic 2:    Data wrangling - [**base R**]{style="color:#edea2b"}
+-   Topic 3:    Data wrangling
+                    
+    - Explore
+    - Tidy
+    - Summarize
+    - Analyze
 
--   Topic 3:    Tidyverse
-
--   Topic 4:    Data wrangling - [**Tidyverse**]{style="color:#edea2b"}
-
--   Topic 5:    Piping methods
+-   Topic 4:    Piping methods
 :::
 
 ::: fragment
--   Topic 6:    Additional resources
+-   Topic 5:    Additional resources
 :::
 
 ![](images/r_learners.png){.absolute bottom="0" right="0" width="50%" height="50%"}
+
+## Data wrangling {data-menu-title="Data workflow"}
+
+::: {.r-stack}
+![](images/data-science-wrangle1.png)
+
+![](images/data-science-wrangle2.png){.fragment}
+:::
+
 
 # Topic 1 {data-menu-title="Topic 1"}
 
@@ -81,21 +92,21 @@ The presentation is split into seven topics:
 
 Basic steps to working with ([**wrangle**]{style="color:#edea2b"}) data in R:
 
-::: {.fragment .fade-in-then-out}
+::: {.fragment .fade-out fragment-index=1}
 - Check or set a working directory.
 
 - Load data.
 
-- Wrangle data (Explore, Summarize, and Analyze)!
+- Wrangle data (Explore, Tidy, Summarize, and Analyze)!
 :::
 
 ::: {.absolute top="101" left="0"}
-::: fragment  
+::: {.fragment .fade-in fragment-index=1}  
 - ~~Check or set a working directory.~~&nbsp;&nbsp;Set up an [**RStudio Project**]{style="color:#edea2b"}.
 
 - Load data.
 
-- Wrangle data (Explore, Summarize, and Analyze)!
+- Wrangle data (Explore, Tidy, Summarize, and Analyze)!
 :::
 :::
 
@@ -109,6 +120,718 @@ Basic steps to working with ([**wrangle**]{style="color:#edea2b"}) data in R:
 
 # Topic 2 {data-menu-title="Topic 2"}
 
-[Data wrangling - [**base R**]{style="color:#edea2b"}]{style="font-size: 1.5em; text-align: center"}
+[Tidyverse]{style="font-size: 1.5em; text-align: center"}
 
-## Data wrangling - [**base R**]{style="color:#edea2b"} {data-menu-title="base R"}
+## Topic 2: Tidyverse {data-menu-title="Tidyverse"}
+-   [Tidyverse]{style="color:#edea2b"} - collection of R packages for data science
+![](images/tidyverse.png){.absolute bottom="-10" right="275" height="50%"} ![](images/tidyverse2.png){.absolute bottom="0" right="0" height="50%"}
+
+. . .
+
+-   Underlying design philosophy, grammar, and data structures
+
+. . .
+
+-   [Supported by RStudio](https://www.tidyverse.org)
+
+## Topic 2: Tidyverse {data-menu-title="Data process"}
+
+::: {.r-stack}
+![](images/data-science-tidy1.png)
+
+![](images/data-science-tidy2.png){.fragment}
+
+![](images/data-science-tidy3.png){.fragment}
+:::
+
+## Topic 2: Tidyverse {data-menu-title="Tidyverse install"}
+-   Tidyverse packages can be installed and loaded individually:
+
+```{r}
+#| echo: true
+#| eval: false
+# Install and load individual Tidyverse packages
+install.packages("dplyr");   library(dplyr)       # Install and load dplyr
+install.packages("ggplot2"); library (ggplot2)    # Install and load ggplot
+install.packages("readr");   library(readr)       # Install and load readr
+```
+
+![](images/tidyverse2.png){.absolute bottom="0" right="0" height="50%"}
+
+::: fragment
+-   Or, in bulk, with the `tidyverse` package:
+
+```{r}
+#| echo: true
+#| eval: false
+# Install all Tidyverse packages
+install.packages("tidyverse")                     # Bulk tidyverse
+library(tidyverse)                                # Load 8 core packages 
+
+# List tidyverse packages
+tidyverse_packages(include_self=FALSE)
+```
+
+```{r}
+#| echo: false
+#| eval: true
+library(tidyverse)
+tidyverse_packages(include_self=FALSE)
+```
+:::
+
+![](images/tidyverse2.png){.absolute bottom="0" right="0" height="50%"}
+
+## Topic 2: Tidyverse {data-menu-title="dplyr"}
+-   Core packages - dplyr, forcats, ggplot2, purrr, readr, tibble, tidyr, stringr
+
+-   `dplyr` package:
+
+    - Introduces consistent set of functions (verbs)
+    - Applied across all Tidyverse packages
+
+```{r}
+#| echo: true
+#| eval: false
+filter(...)        # picks cases based on their values
+
+select(...)        # picks columns based on their names
+
+slice(...)         # picks rows by position
+
+arrange(...)       # changes the ordering of rows
+
+group_by(...)      # allows operations by groups
+
+mutate(...)        # adds new variables to a dataset
+
+summarise(...)     # summarise multiple values
+
+count(...)         # counts number of rows in a group
+
+add_row(...)       # add a row of data to a data frame
+```
+
+![](images/dplyr_hex.png){.absolute bottom="0" right="0" width="250"}
+
+# Topic 3 {data-menu-title="Topic 3"}
+
+[Data wrangling]{style="font-size: 1.5em; text-align: center"}
+
+## Data wrangling {data-menu-title="Data wrangling"}
+Basic steps to [**wrangle**]{style="color:#edea2b"} data in R:
+
+-   Explore
+-   Tidy
+-   Summarize
+-   Analyze
+
+::: fragment
+-   Let's use the [penguins.csv]{style="color:#edea2b"} file in the data folder:
+```{r}
+#| echo: true
+#| eval: false
+df <- read_csv('data/penguins.csv')
+```
+:::
+
+![](images/data_cowboy.png){.absolute bottom="0" right="0" width="50%"}
+
+## Data wrangling {data-menu-title="Explore"}
+Basic steps: [**Explore**]{style="color:#edea2b"}, Tidy, Summarize, Analyze
+
+-   Helpful functions:
+```{r}
+#| echo: true
+#| eval: false
+View(df)                          # View the data
+
+str (df)                          # Data structure
+
+head(df,5); slice_head(df,n=5)    # Print first five rows
+
+tail(df,5); slice_tail(df,n=5)    # Print last five rows
+
+nrow(df)                          # Number of rows (observations)
+
+ncol(df)                          # Number of columns (variables)
+
+dim (df)                          # Dimensions (rows x columns)
+
+rownames(df)                      # Print row names
+
+colnames(df)                      # Print column names
+
+complete.cases(df)                # Check if observations are complete
+
+duplicated(df)                    # Check if observations are duplicated
+```
+
+![](images/penguins.png){.absolute bottom="0" right="0" width="250"}
+
+## Data wrangling {data-menu-title="Tidy"}
+Basic steps: Explore, [**Tidy**]{style="color:#edea2b"}, Summarize, Analyze
+
+-   Helpful functions:
+
+::: panel-tabset
+### Missing data
+```{r}
+#| echo: true
+#| eval: false
+# Check if observations are complete
+complete.cases(df)
+
+# Remove incomplete observations
+df_sub  <- drop_na(df)
+df_sub  <- na.omit(df)               
+
+# Remove specific NAs
+df_sub2 <- drop_na(df, bill_length_mm)
+```
+### Data mistakes
+```{r}
+#| echo: true
+#| eval: false
+# Check unique groups
+unique(df$penguin); levels(factor(df$penguin))
+
+# Fix extra white space
+df <- mutate(df, penguin=str_squish(df$penguin))
+
+# Fix spelling mistakes
+df <- mutate(df,
+             penguin=case_when(
+               penguin == 'Pygoscelis papa' ~ 'Pygoscelis papua',
+               penguin == 'Pygoscelis antarctica' ~ 'Pygoscelis antarcticus',
+               TRUE ~ penguin
+             ))
+
+# Remove duplicate entries
+df <- distinct(df) 
+```
+### Data form
+```{r}
+#| echo: true
+#| eval: false
+# Simplify and rearrange
+# Splitting values
+df <- mutate(df,penguin=str_split_i(df$penguin,' ',2))
+
+# Renaming variables
+df <- rename(df,species=penguin)
+
+# Rearranging variables
+df <- relocate(df, year, .before='island')
+
+# Change data form
+df_long <- read_csv('data/penguins_long.csv')
+
+# Long to wide form
+df_wide <- pivot_wider(df_long,                         
+                       names_from='measurement',
+                       values_from='size')
+
+# Subset data
+df_subset <- filter(df, island=='Biscoe' & year==2008)
+```
+:::
+
+![](images/penguins.png){.absolute bottom="0" right="0" width="250"}
+
+## Data wrangling {data-menu-title="Summarize"}
+Basic steps: Explore, Tidy, [**Summarize**]{style="color:#edea2b"}, Analyze
+
+-   Helpful functions:
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "1-9|11-19|21-22"
+# Descriptive statistics - overall
+summary(df)                              # Quick overall summary of input values
+
+mean(df$bill_length_mm)                  # Average of input value
+mean(df$bill_length_mm, na.rm=TRUE)
+max(df$bill_length_mm, na.rm=TRUE)       # Maximum of input value
+min(df$bill_length_mm, na.rm=TRUE)       # Minimum of input value
+sd(df$bill_length_mm, na.rm=TRUE)        # Standard deviation of input value
+length(df$bill_length_mm)                # Set length of input value
+
+# Descriptive statistics - by groups
+df_group <- group_by(df_sub, species)    # Create a grouped data frame
+
+summarize(df_group,                      # Summarize input value
+          avg_bill=mean(bill_length_mm),
+          max_bill=max(bill_length_mm),
+          min_bill=min(bill_length_mm),
+          sd_bill=sd(bill_length_mm),
+          n_bill=length(bill_length_mm))
+
+summarize(df_group,
+          across(4:7, ~mean(.x,na.rm=TRUE)))
+```
+
+![](images/penguins.png){.absolute bottom="0" right="0" width="250"}
+
+## Data wrangling {data-menu-title="Analyze"}
+Basic steps: Explore, Tidy, Summarize, [**Analyze**]{style="color:#edea2b"}
+
+-   Helpful functions:
+```{r}
+#| echo: true
+#| eval: false
+lm(...)           # Apply a linear model
+
+glm(...)          # Apply a generalized linear model
+
+t.test(...)       # Perform a t-test for difference between means
+
+aov(...)          # Analysis of variance test
+
+prop.test(...)    # Test for a difference between proportions
+```
+
+![](images/penguins.png){.absolute bottom="0" right="0" width="250"}
+
+## Data wrangling {data-menu-title="Linear model"}
+Basic steps: Explore, Tidy, Summarize, [**Analyze**]{style="color:#edea2b"}
+
+-   How does penguin body mass change with flipper length?
+
+:::panel-tabset
+### Plot
+```{r}
+#| echo: true
+#| eval: false
+with(df, plot(body_mass_g~flipper_length_mm))
+```
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-width: 6
+#| fig-height: 4
+df <- palmerpenguins::penguins
+df <- drop_na(df)
+par(mar = c(4, 4, 1, 1)) # Set the margin on all sides to 2
+with(df, plot(body_mass_g~flipper_length_mm))
+```
+### Model fit
+```{r}
+#| echo: true
+#| eval: true
+# Apply a simple linear model
+lm_mod <- lm(body_mass_g~flipper_length_mm, data=df)
+summary(lm_mod)
+```
+:::
+
+## Data wrangling {data-menu-title="ANOVA"}
+Basic steps: Explore, Tidy, Summarize, [**Analyze**]{style="color:#edea2b"}
+
+-   How does penguin body mass change with flipper length?
+
+:::panel-tabset
+### Plot
+```{r}
+#| echo: true
+#| eval: false
+with(df, plot(x=species, y=body_mass_g))
+```
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-width: 6
+#| fig-height: 4
+df <- palmerpenguins::penguins
+df <- drop_na(df)
+par(mar = c(4, 4, 1, 1)) # Set the margin on all sides to 2
+with(df, plot(x=species, y=body_mass_g))
+```
+### Model fit
+```{r}
+#| echo: true
+#| eval: true
+# Apply a simple linear model with an ANOVA test
+lm_mod  <- lm(body_mass_g~species, data=df)
+aov_mod <- aov(lm_mod)
+summary(aov_mod)
+```
+:::
+
+## Exercise 1 - Data wrangling: {data-background="#ffffff" data-menu-title="Exercise1"}
+-   The `USArrests` dataset provides data on the number of arrests per 100,000 residents for violent crimes (assault, murder, and rape) in each of the 50 US states in 1973.
+
+-   First, assign the crime data to an object called `crime` and add the row names as a varaible
+```{r}
+#| echo: true
+#| eval: false
+crime <- USArrests
+crime <- rownames_to_column(crime, 'State')
+```
+
+-   Using that data, try the following:
+
+    1. Calculate average number of arrests for assault.
+    2. Identify maximum number of arrests for assault.
+    3. Print the statistics for Pennsylvania.
+    4. Was there a linear relationship between murders and assaults?
+
+::: fragment
+-   How did you do?
+:::
+
+:::{.absolute bottom="0" right="0"}    
+```{r}
+countdown::countdown(5L)
+```
+:::
+
+## Exercise 1 - Data wrangling: {data-background="#ffffff" data-menu-title="Exercise1"}
+-   Calculate average number of arrests for assault:
+```{r}
+#| echo: false
+#| eval: true
+crime <- USArrests
+crime <- rownames_to_column(crime, 'State')
+```
+
+```{r}
+#| echo: true
+#| eval: true
+rbind(
+    mean(crime$Assault),
+    mean(crime[,3]),
+    sum(crime$Assault)/length(crime$Assault)
+)
+summarize(crime, mean(Assault))
+```
+
+## Exercise 1 - Data wrangling: {data-background="#ffffff" data-menu-title="Exercise1"}
+-   Calculate average number of arrests for assault:
+
+```{r}
+#| echo: true
+#| eval: true
+max(crime$Assault)
+x <- sort(crime$Assault, decreasing=TRUE)
+x[1]
+summarize(crime, max(Assault))
+```
+
+## Exercise 1 - Data wrangling: {data-background="#ffffff" data-menu-title="Exercise1"}
+-   Print the statistics for Pennsylvania:
+
+```{r}
+#| echo: true
+#| eval: true
+rbind(
+    crime[crime$State=='Pennsylvania',],
+    crime[38,]
+)
+filter(crime, State=='Pennsylvania')
+```
+
+## Exercise 1 - Data wrangling: {data-background="#ffffff" data-menu-title="Exercise1"}
+-   Was there a linear relationship between murders and assaults?
+
+:::panel-tabset
+### Plot
+```{r}
+#| echo: true
+#| eval: false
+with(crime, plot(x=Assault, y=Murder))
+```
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-width: 6
+#| fig-height: 4
+par(mar = c(4, 4, 1, 1)) # Set the margin on all sides to 2
+with(crime, plot(x=Assault, y=Murder))
+```
+### Model fit
+```{r}
+#| echo: true
+#| eval: true
+# Apply a simple linear model
+lm_mod <- lm(Murder~Assault, data=crime)
+summary(lm_mod)
+```
+:::
+
+# Topic 4 {data-menu-title="Topic 4"}
+
+[Piping methods]{style="font-size: 1.5em; text-align: center"}
+
+## Topic 4: Piping methods {data-menu-title="magrittr"}
+-   Core packages - dplyr, forcats, ggplot2, purrr, readr, tibble, tidyr, stringr
+
+-   `dplyr` package:
+
+    - Introduces consistent set of functions (verbs)
+    - Applied across all Tidyverse packages
+
+-   `magrittr` package:
+
+    - Pipe operator (%>%)
+    - Forwards an object, into a function
+
+![](images/magrittr_hex.png){.absolute bottom="0" right="0" width="250"}
+
+## Topic 4: Piping methods {data-menu-title="pipes"}
+-   What if we wanted to summarize the data frame we created earlier?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "1-10|12-19"
+# Descriptive statistics - by groups
+# Summarize the bill length variable
+df_group <- group_by(df_sub, species)    # Create a grouped data frame
+
+summarize(df_group,                      # Summarize input value
+          avg_bill=mean(bill_length_mm),
+          max_bill=max(bill_length_mm),
+          min_bill=min(bill_length_mm),
+          sd_bill=sd(bill_length_mm),
+          n_bill=length(bill_length_mm))
+
+# Summarize the bill length variable
+# Pipe df_group object into the summarize function
+df_group %>%  summarize(avg_bill=mean(bill_length_mm),
+                        max_bill=max(bill_length_mm),
+                        min_bill=min(bill_length_mm),
+                        sd_bill=sd(bill_length_mm),
+                        n_bill=length(bill_length_mm))
+```
+
+## Topic 4: Piping methods {data-menu-title="magrittr"}
+-   Core packages - dplyr, forcats, ggplot2, purrr, readr, tibble, tidyr, stringr
+
+-   `dplyr` package:
+
+    - Introduces consistent set of functions (verbs)
+    - Applied across all Tidyverse packages
+
+-   `magrittr` package:
+
+    - Pipe operator (%>%)
+    - Forwards an object, into a function
+    - Perform multiple functions, without nesting, or creating multiple objects
+
+![](images/magrittr_hex.png){.absolute bottom="0" right="0" width="250"}
+
+## Topic 4: Piping methods {data-menu-title="magrittr"}
+-   For example, in our penguin dataset, let's say we're interested in the average body mass measured in 2008, based on penguin species.
+
+-   Three basic approaches:
+
+:::panel-tabset
+### Multiple objects
+```{r}
+#| echo: true
+#| eval: true
+a <- filter(df, year==2008)
+b <- group_by(a, species)
+c <- summarize(b,
+               Avg=mean(body_mass_g))
+d <- arrange(c, desc(Avg))
+print(d)
+```
+### Nested functions
+```{r}
+#| echo: true
+#| eval: true
+arrange(
+    summarize(
+        group_by(
+            filter(df,year==2008),
+            species),
+        Avg = mean(body_mass_g)),
+    desc(Avg)
+)
+```
+### Piping
+```{r}
+#| echo: true
+#| eval: false
+# magrittr pipe
+df %>%
+    filter(year==2008) %>%
+    group_by(species) %>%
+    summarize(Avg=mean(body_mass_g)) %>%
+    arrange(desc(Avg))
+
+# native pipe
+df |> 
+    filter(year==2008) |> 
+    group_by(species) |> 
+    summarize(Avg=mean(body_mass_g)) |> 
+    arrange(desc(Avg))
+```
+
+```{r}
+#| echo: false
+#| eval: true
+df |> 
+    filter(year==2008) |> 
+    group_by(species) |> 
+    summarize(Avg=mean(body_mass_g)) |> 
+    arrange(desc(Avg))
+```
+:::
+
+## Exercise 2 - Data wrangling: {data-background="#ffffff" data-menu-title="Exercise2"}
+-   The [Long Term Ecological Research (LTER)]{style="color:#edea2b"} program was started by the National Science Foundation in the late 70's. Data from LTER are publicly available.
+
+-   One study recorded the size of fiddler crabs in 2016 in salt marshes from Florida to Massachusetts.
+
+-   First, load [crabs.csv]{style="color:#edea2b"} in the data folder and try the following:
+
+    1. Using piping methods, `tidy` the data.
+    2. Summarize crab size by site.
+
+::: fragment
+-   Next, determine if the data supports ["Bergmann’s rule"]{style="color:#edea2b"}, which predicts that organisms at higher latitudes are larger than ones at lower latitudes, by finishing the following script:
+
+:::{.column width="60%"}
+```{r}
+#| echo: true
+#| eval: false
+crabs |> 
+    group_by(???) |> 
+    summarize(???) |> 
+    ggplot(aes(x=latitude,y=avg_size)) + 
+    geom_point() +
+    geom_smooth(method='lm')
+```
+:::
+:::
+
+::: fragment
+-   How did you do?
+:::
+
+:::{.absolute bottom="0" right="0"}    
+```{r}
+countdown::countdown(5L)
+```
+:::
+
+## Exercise 2 - Data wrangling: {data-background="#ffffff" data-menu-title="Exercise1"}
+-   How did you do?
+
+:::panel-tabset
+### Part 1 - Tidy
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "1-5|7-11|13-20|1-20"
+# Load LTER data
+crabs <- read_csv('data/crabs.csv')
+
+# Check quick summary for variables with NAs
+crabs |> summary()
+
+# Check for duplicate observations
+crabs |> duplicated()
+
+# Check how many observations at each site
+crabs |> group_by(site) |> count()
+
+# Clean up the data
+crabs <- crabs |> 
+  drop_na(size) |> 
+  distinct() |> 
+  mutate(site=case_when(
+    site == 'PI' ~ 'PIE',
+    TRUE ~ site
+  ))
+```
+
+### Part 1 - Summarize
+```{r}
+#| echo: true
+#| eval: false
+# Summarize crab size by site
+crabs |> 
+  group_by(site) |> 
+  summarize(
+    avg_size=mean(size),
+    min_size=min(size),
+    max_size=max(size),
+    sd_size=sd(size),
+    n=n()
+  )
+
+```
+### Part 2
+```{r}
+#| echo: true
+#| eval: false
+# Does the data support Bergmann’s rule
+crabs |> 
+    group_by(site, latitude) |> 
+    summarize(avg_size=mean(size)) |> 
+    ggplot(aes(x=latitude,y=avg_size)) + 
+    geom_point() +
+    geom_smooth(method='lm')
+
+```
+:::
+
+## Review - Data wrangling in R: {data-background="#000000" data-menu-title="Review 4 - Data"}
+
+-   RStudio Projects can help to [**enhance reproducibility**]{style="color:#edea2b"} if *paths within scripts are kept relative*.
+![](images/relocate.png){.absolute bottom="0" left="0" height="210"}
+![](images/rename.png){.absolute bottom="0" left="310" height="210"}
+![](images/filter.png){.absolute bottom="0" right="0" height="210"}
+
+::: fragment
+-   Data wrangling = Explore, Tidy, Summarize, & Analyze
+:::
+
+::: fragment
+-   `Tidyverse` packages provide a consistent language (functions) and grammar (arguments).
+:::
+
+::: fragment
+-   A [**piping workflow**]{style="color:#edea2b"} passes objects into data argument of functions
+:::
+
+
+
+# Topic 5 {data-menu-title="Topic 5"}
+
+[Extras - Additional Resources]{style="font-size: 1.5em; text-align: center"}
+
+## Topic 5: Additional Resources {data-menu-title="Additional Resources"}
+
+::: columns
+::: {.column width="60%"}
+-   Upcoming workshops (*via Zoom):
+
+    - Data vizualization with R (3/21, 3/24*)
+    - Shiny Apps in R (3/28, 3/31*)
+
+-   [Lehigh's R Programming Slack Channel](https://lehigh-home.slack.com/archives/C04AE4B9X0S)
+
+::: fragment
+-   External resources:
+    
+    - [R for Data Science - Book](https://r4ds.had.co.nz/)
+    - [R for Data Science - Slack Workspace](https://rfordatascience.slack.com)
+    - [RStudio Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/)
+    - [Twitter for R Programmers](https://www.t4rstats.com/follow-some-folks.html)
+    - [LinkedIn Learning](https://www.linkedin.com/learning/search?keywords=r%20programming&u=2222241)
+:::
+
+:::
+::: {.column width="40%"}
+
+![](images/tidyverse2.png)
+:::
+:::

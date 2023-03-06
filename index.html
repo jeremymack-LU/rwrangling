@@ -27,6 +27,70 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; background-color: #2a0f15; font-weight: bold; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link rel="stylesheet" href="custom.css">
@@ -318,6 +382,8 @@
       margin-right: 0; 
     }
   </style>
+  <link href="index_files/libs/countdown-0.4.0/countdown.css" rel="stylesheet">
+  <script src="index_files/libs/countdown-0.4.0/countdown.js"></script>
 </head>
 <body class="quarto-dark">
   <div class="reveal">
@@ -335,11 +401,10 @@
 <li><p>It’s targeted at people that took the first seminar, or have programming experience.</p></li>
 </ul><div class="fragment">
 <ul>
-<li><p>By the end of this presentation, you should know how to <span style="color:#edea2b"><strong>wrangle</strong></span> data in R.</p>
+<li><p>By the end of this presentation, you should know how to <span style="color:#edea2b"><strong>wrangle</strong></span> data in R:</p>
 <ul>
-<li>Import</li>
 <li>Explore</li>
-<li>Clean</li>
+<li>Tidy</li>
 <li>Summarize</li>
 <li>Analyze</li>
 </ul></li>
@@ -354,26 +419,38 @@
 </section>
 <section id="structure-of-the-presentation" class="slide level2" data-menu-title="Presentation outline">
 <h2>Structure of the presentation</h2>
-<p>The presentation is split into seven topics:</p>
+<p>The presentation is split into five topics:</p>
 <div class="fragment">
 <ul>
-<li>Topic 1: &nbsp;&nbsp; RStudio Projects</li>
+<li><p>Topic 1: &nbsp;&nbsp; RStudio Projects</p></li>
+<li><p>Topic 2: &nbsp;&nbsp; Tidyverse</p></li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li><p>Topic 2: &nbsp;&nbsp; Data wrangling - <span style="color:#edea2b"><strong>base R</strong></span></p></li>
-<li><p>Topic 3: &nbsp;&nbsp; Tidyverse</p></li>
-<li><p>Topic 4: &nbsp;&nbsp; Data wrangling - <span style="color:#edea2b"><strong>Tidyverse</strong></span></p></li>
-<li><p>Topic 5: &nbsp;&nbsp; Piping methods</p></li>
+<li><p>Topic 3: &nbsp;&nbsp; Data wrangling</p>
+<ul>
+<li>Explore</li>
+<li>Tidy</li>
+<li>Summarize</li>
+<li>Analyze</li>
+</ul></li>
+<li><p>Topic 4: &nbsp;&nbsp; Piping methods</p></li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li>Topic 6: &nbsp;&nbsp; Additional resources</li>
+<li>Topic 5: &nbsp;&nbsp; Additional resources</li>
 </ul>
 </div>
 <p><img data-src="images/r_learners.png" class="absolute" style="bottom: 0px; right: 0px; width: 50%; height: 50%; "></p>
+</section>
+<section id="data-wrangling" class="slide level2" data-menu-title="Data workflow">
+<h2>Data wrangling</h2>
+<div class="r-stack">
+<p><img data-src="images/data-science-wrangle1.png"></p>
+<p><img data-src="images/data-science-wrangle2.png" class="fragment"></p>
+</div>
 </section>
 <section>
 <section id="topic-1" class="title-slide slide level1 center" data-menu-title="Topic 1">
@@ -384,19 +461,19 @@
 <h2>RStudio Projects</h2>
 <p><img data-src="images/rproject.png" class="absolute" style="top: 0px; right: 0px; width: 33%; "> <img data-src="images/cracked_setwd.png" class="absolute" style="bottom: 0px; right: 0px; width: 33%; "></p>
 <p>Basic steps to working with (<span style="color:#edea2b"><strong>wrangle</strong></span>) data in R:</p>
-<div class="fragment fade-in-then-out">
+<div class="fragment fade-out" data-fragment-index="1">
 <ul>
 <li><p>Check or set a working directory.</p></li>
 <li><p>Load data.</p></li>
-<li><p>Wrangle data (Explore, Summarize, and Analyze)!</p></li>
+<li><p>Wrangle data (Explore, Tidy, Summarize, and Analyze)!</p></li>
 </ul>
 </div>
 <div class="absolute" style="top: 101px; left: 0px; ">
-<div class="fragment">
+<div class="fragment fade-in" data-fragment-index="1">
 <ul>
 <li><p><del>Check or set a working directory.</del>&nbsp;&nbsp;Set up an <span style="color:#edea2b"><strong>RStudio Project</strong></span>.</p></li>
 <li><p>Load data.</p></li>
-<li><p>Wrangle data (Explore, Summarize, and Analyze)!</p></li>
+<li><p>Wrangle data (Explore, Tidy, Summarize, and Analyze)!</p></li>
 </ul>
 </div>
 </div>
@@ -414,10 +491,817 @@
 <section>
 <section id="topic-2" class="title-slide slide level1 center" data-menu-title="Topic 2">
 <h1>Topic 2</h1>
-<p><span style="font-size: 1.5em; text-align: center">Data wrangling - <span style="color:#edea2b"><strong>base R</strong></span></span></p>
+<p><span style="font-size: 1.5em; text-align: center">Tidyverse</span></p>
 </section>
-<section id="data-wrangling---base-r" class="slide level2" data-menu-title="base R">
-<h2>Data wrangling - <span style="color:#edea2b"><strong>base R</strong></span></h2>
+<section id="topic-2-tidyverse" class="slide level2" data-menu-title="Tidyverse">
+<h2>Topic 2: Tidyverse</h2>
+<ul>
+<li><span style="color:#edea2b">Tidyverse</span> - collection of R packages for data science <img data-src="images/tidyverse.png" class="absolute" style="bottom: -10px; right: 275px; height: 50%; "> <img data-src="images/tidyverse2.png" class="absolute" style="bottom: 0px; right: 0px; height: 50%; "></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Underlying design philosophy, grammar, and data structures</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><a href="https://www.tidyverse.org">Supported by RStudio</a></li>
+</ul>
+</div>
+</section>
+<section id="topic-2-tidyverse-1" class="slide level2" data-menu-title="Data process">
+<h2>Topic 2: Tidyverse</h2>
+<div class="r-stack">
+<p><img data-src="images/data-science-tidy1.png"></p>
+<p><img data-src="images/data-science-tidy2.png" class="fragment"></p>
+<p><img data-src="images/data-science-tidy3.png" class="fragment"></p>
+</div>
+</section>
+<section id="topic-2-tidyverse-2" class="slide level2" data-menu-title="Tidyverse install">
+<h2>Topic 2: Tidyverse</h2>
+<ul>
+<li>Tidyverse packages can be installed and loaded individually:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Install and load individual Tidyverse packages</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>);   <span class="fu">library</span>(dplyr)       <span class="co"># Install and load dplyr</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>); <span class="fu">library</span> (ggplot2)    <span class="co"># Install and load ggplot</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">install.packages</span>(<span class="st">"readr"</span>);   <span class="fu">library</span>(readr)       <span class="co"># Install and load readr</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img data-src="images/tidyverse2.png" class="absolute" style="bottom: 0px; right: 0px; height: 50%; "></p>
+<div class="fragment">
+<ul>
+<li>Or, in bulk, with the <code>tidyverse</code> package:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Install all Tidyverse packages</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)                     <span class="co"># Bulk tidyverse</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">library</span>(tidyverse)                                <span class="co"># Load 8 core packages </span></span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co"># List tidyverse packages</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="fu">tidyverse_packages</span>(<span class="at">include_self=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "broom"         "cli"           "crayon"        "dbplyr"       
+ [5] "dplyr"         "dtplyr"        "forcats"       "ggplot2"      
+ [9] "googledrive"   "googlesheets4" "haven"         "hms"          
+[13] "httr"          "jsonlite"      "lubridate"     "magrittr"     
+[17] "modelr"        "pillar"        "purrr"         "readr"        
+[21] "readxl"        "reprex"        "rlang"         "rstudioapi"   
+[25] "rvest"         "stringr"       "tibble"        "tidyr"        
+[29] "xml2"         </code></pre>
+</div>
+</div>
+</div>
+<p><img data-src="images/tidyverse2.png" class="absolute" style="bottom: 0px; right: 0px; height: 50%; "></p>
+</section>
+<section id="topic-2-tidyverse-3" class="slide level2" data-menu-title="dplyr">
+<h2>Topic 2: Tidyverse</h2>
+<ul>
+<li><p>Core packages - dplyr, forcats, ggplot2, purrr, readr, tibble, tidyr, stringr</p></li>
+<li><p><code>dplyr</code> package:</p>
+<ul>
+<li>Introduces consistent set of functions (verbs)</li>
+<li>Applied across all Tidyverse packages</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">filter</span>(...)        <span class="co"># picks cases based on their values</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">select</span>(...)        <span class="co"># picks columns based on their names</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="fu">slice</span>(...)         <span class="co"># picks rows by position</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="fu">arrange</span>(...)       <span class="co"># changes the ordering of rows</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="fu">group_by</span>(...)      <span class="co"># allows operations by groups</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="fu">mutate</span>(...)        <span class="co"># adds new variables to a dataset</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="fu">summarise</span>(...)     <span class="co"># summarise multiple values</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="fu">count</span>(...)         <span class="co"># counts number of rows in a group</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="fu">add_row</span>(...)       <span class="co"># add a row of data to a data frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img data-src="images/dplyr_hex.png" class="absolute" style="bottom: 0px; right: 0px; width: 250px; "></p>
+</section></section>
+<section>
+<section id="topic-3" class="title-slide slide level1 center" data-menu-title="Topic 3">
+<h1>Topic 3</h1>
+<p><span style="font-size: 1.5em; text-align: center">Data wrangling</span></p>
+</section>
+<section id="data-wrangling-1" class="slide level2" data-menu-title="Data wrangling">
+<h2>Data wrangling</h2>
+<p>Basic steps to <span style="color:#edea2b"><strong>wrangle</strong></span> data in R:</p>
+<ul>
+<li>Explore</li>
+<li>Tidy</li>
+<li>Summarize</li>
+<li>Analyze</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Let’s use the <span style="color:#edea2b">penguins.csv</span> file in the data folder:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'data/penguins.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p><img data-src="images/data_cowboy.png" class="absolute" style="bottom: 0px; right: 0px; width: 50%; "></p>
+</section>
+<section id="data-wrangling-2" class="slide level2" data-menu-title="Explore">
+<h2>Data wrangling</h2>
+<p>Basic steps: <span style="color:#edea2b"><strong>Explore</strong></span>, Tidy, Summarize, Analyze</p>
+<ul>
+<li>Helpful functions:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">View</span>(df)                          <span class="co"># View the data</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">str</span> (df)                          <span class="co"># Data structure</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="fu">head</span>(df,<span class="dv">5</span>); <span class="fu">slice_head</span>(df,<span class="at">n=</span><span class="dv">5</span>)    <span class="co"># Print first five rows</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="fu">tail</span>(df,<span class="dv">5</span>); <span class="fu">slice_tail</span>(df,<span class="at">n=</span><span class="dv">5</span>)    <span class="co"># Print last five rows</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="fu">nrow</span>(df)                          <span class="co"># Number of rows (observations)</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="fu">ncol</span>(df)                          <span class="co"># Number of columns (variables)</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="fu">dim</span> (df)                          <span class="co"># Dimensions (rows x columns)</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="fu">rownames</span>(df)                      <span class="co"># Print row names</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="fu">colnames</span>(df)                      <span class="co"># Print column names</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="fu">complete.cases</span>(df)                <span class="co"># Check if observations are complete</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="fu">duplicated</span>(df)                    <span class="co"># Check if observations are duplicated</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img data-src="images/penguins.png" class="absolute" style="bottom: 0px; right: 0px; width: 250px; "></p>
+</section>
+<section id="data-wrangling-3" class="slide level2" data-menu-title="Tidy">
+<h2>Data wrangling</h2>
+<p>Basic steps: Explore, <span style="color:#edea2b"><strong>Tidy</strong></span>, Summarize, Analyze</p>
+<ul>
+<li>Helpful functions:</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Missing data</a></li><li><a href="#tabset-1-2">Data mistakes</a></li><li><a href="#tabset-1-3">Data form</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Check if observations are complete</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">complete.cases</span>(df)</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># Remove incomplete observations</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>df_sub  <span class="ot">&lt;-</span> <span class="fu">drop_na</span>(df)</span>
+<span id="cb7-6"><a href="#cb7-6"></a>df_sub  <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df)               </span>
+<span id="cb7-7"><a href="#cb7-7"></a></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co"># Remove specific NAs</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>df_sub2 <span class="ot">&lt;-</span> <span class="fu">drop_na</span>(df, bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Check unique groups</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">unique</span>(df<span class="sc">$</span>penguin); <span class="fu">levels</span>(<span class="fu">factor</span>(df<span class="sc">$</span>penguin))</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># Fix extra white space</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>df <span class="ot">&lt;-</span> <span class="fu">mutate</span>(df, <span class="at">penguin=</span><span class="fu">str_squish</span>(df<span class="sc">$</span>penguin))</span>
+<span id="cb8-6"><a href="#cb8-6"></a></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co"># Fix spelling mistakes</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>df <span class="ot">&lt;-</span> <span class="fu">mutate</span>(df,</span>
+<span id="cb8-9"><a href="#cb8-9"></a>             <span class="at">penguin=</span><span class="fu">case_when</span>(</span>
+<span id="cb8-10"><a href="#cb8-10"></a>               penguin <span class="sc">==</span> <span class="st">'Pygoscelis papa'</span> <span class="sc">~</span> <span class="st">'Pygoscelis papua'</span>,</span>
+<span id="cb8-11"><a href="#cb8-11"></a>               penguin <span class="sc">==</span> <span class="st">'Pygoscelis antarctica'</span> <span class="sc">~</span> <span class="st">'Pygoscelis antarcticus'</span>,</span>
+<span id="cb8-12"><a href="#cb8-12"></a>               <span class="cn">TRUE</span> <span class="sc">~</span> penguin</span>
+<span id="cb8-13"><a href="#cb8-13"></a>             ))</span>
+<span id="cb8-14"><a href="#cb8-14"></a></span>
+<span id="cb8-15"><a href="#cb8-15"></a><span class="co"># Remove duplicate entries</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a>df <span class="ot">&lt;-</span> <span class="fu">distinct</span>(df) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-3">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Simplify and rearrange</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="co"># Splitting values</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>df <span class="ot">&lt;-</span> <span class="fu">mutate</span>(df,<span class="at">penguin=</span><span class="fu">str_split_i</span>(df<span class="sc">$</span>penguin,<span class="st">' '</span>,<span class="dv">2</span>))</span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co"># Renaming variables</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>df <span class="ot">&lt;-</span> <span class="fu">rename</span>(df,<span class="at">species=</span>penguin)</span>
+<span id="cb9-7"><a href="#cb9-7"></a></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co"># Rearranging variables</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>df <span class="ot">&lt;-</span> <span class="fu">relocate</span>(df, year, <span class="at">.before=</span><span class="st">'island'</span>)</span>
+<span id="cb9-10"><a href="#cb9-10"></a></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="co"># Change data form</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a>df_long <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'data/penguins_long.csv'</span>)</span>
+<span id="cb9-13"><a href="#cb9-13"></a></span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="co"># Long to wide form</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a>df_wide <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(df_long,                         </span>
+<span id="cb9-16"><a href="#cb9-16"></a>                       <span class="at">names_from=</span><span class="st">'measurement'</span>,</span>
+<span id="cb9-17"><a href="#cb9-17"></a>                       <span class="at">values_from=</span><span class="st">'size'</span>)</span>
+<span id="cb9-18"><a href="#cb9-18"></a></span>
+<span id="cb9-19"><a href="#cb9-19"></a><span class="co"># Subset data</span></span>
+<span id="cb9-20"><a href="#cb9-20"></a>df_subset <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, island<span class="sc">==</span><span class="st">'Biscoe'</span> <span class="sc">&amp;</span> year<span class="sc">==</span><span class="dv">2008</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p><img data-src="images/penguins.png" class="absolute" style="bottom: 0px; right: 0px; width: 250px; "></p>
+</section>
+<section id="data-wrangling-4" class="slide level2" data-menu-title="Summarize">
+<h2>Data wrangling</h2>
+<p>Basic steps: Explore, Tidy, <span style="color:#edea2b"><strong>Summarize</strong></span>, Analyze</p>
+<ul>
+<li>Helpful functions:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="1-9|11-19|21-22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Descriptive statistics - overall</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">summary</span>(df)                              <span class="co"># Quick overall summary of input values</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="fu">mean</span>(df<span class="sc">$</span>bill_length_mm)                  <span class="co"># Average of input value</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="fu">mean</span>(df<span class="sc">$</span>bill_length_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="fu">max</span>(df<span class="sc">$</span>bill_length_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>)       <span class="co"># Maximum of input value</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="fu">min</span>(df<span class="sc">$</span>bill_length_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>)       <span class="co"># Minimum of input value</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="fu">sd</span>(df<span class="sc">$</span>bill_length_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>)        <span class="co"># Standard deviation of input value</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="fu">length</span>(df<span class="sc">$</span>bill_length_mm)                <span class="co"># Set length of input value</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="co"># Descriptive statistics - by groups</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a>df_group <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df_sub, species)    <span class="co"># Create a grouped data frame</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a></span>
+<span id="cb10-14"><a href="#cb10-14"></a><span class="fu">summarize</span>(df_group,                      <span class="co"># Summarize input value</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>          <span class="at">avg_bill=</span><span class="fu">mean</span>(bill_length_mm),</span>
+<span id="cb10-16"><a href="#cb10-16"></a>          <span class="at">max_bill=</span><span class="fu">max</span>(bill_length_mm),</span>
+<span id="cb10-17"><a href="#cb10-17"></a>          <span class="at">min_bill=</span><span class="fu">min</span>(bill_length_mm),</span>
+<span id="cb10-18"><a href="#cb10-18"></a>          <span class="at">sd_bill=</span><span class="fu">sd</span>(bill_length_mm),</span>
+<span id="cb10-19"><a href="#cb10-19"></a>          <span class="at">n_bill=</span><span class="fu">length</span>(bill_length_mm))</span>
+<span id="cb10-20"><a href="#cb10-20"></a></span>
+<span id="cb10-21"><a href="#cb10-21"></a><span class="fu">summarize</span>(df_group,</span>
+<span id="cb10-22"><a href="#cb10-22"></a>          <span class="fu">across</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">7</span>, <span class="sc">~</span><span class="fu">mean</span>(.x,<span class="at">na.rm=</span><span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img data-src="images/penguins.png" class="absolute" style="bottom: 0px; right: 0px; width: 250px; "></p>
+</section>
+<section id="data-wrangling-5" class="slide level2" data-menu-title="Analyze">
+<h2>Data wrangling</h2>
+<p>Basic steps: Explore, Tidy, Summarize, <span style="color:#edea2b"><strong>Analyze</strong></span></p>
+<ul>
+<li>Helpful functions:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">lm</span>(...)           <span class="co"># Apply a linear model</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="fu">glm</span>(...)          <span class="co"># Apply a generalized linear model</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="fu">t.test</span>(...)       <span class="co"># Perform a t-test for difference between means</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="fu">aov</span>(...)          <span class="co"># Analysis of variance test</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="fu">prop.test</span>(...)    <span class="co"># Test for a difference between proportions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img data-src="images/penguins.png" class="absolute" style="bottom: 0px; right: 0px; width: 250px; "></p>
+</section>
+<section id="data-wrangling-6" class="slide level2" data-menu-title="Linear model">
+<h2>Data wrangling</h2>
+<p>Basic steps: Explore, Tidy, Summarize, <span style="color:#edea2b"><strong>Analyze</strong></span></p>
+<ul>
+<li>How does penguin body mass change with flipper length?</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Plot</a></li><li><a href="#tabset-2-2">Model fit</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">with</span>(df, <span class="fu">plot</span>(body_mass_g<span class="sc">~</span>flipper_length_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-13-1.png" width="576"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Apply a simple linear model</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>lm_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g<span class="sc">~</span>flipper_length_mm, <span class="at">data=</span>df)</span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="fu">summary</span>(lm_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = body_mass_g ~ flipper_length_mm, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1057.33  -259.79   -12.24   242.97  1293.89 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       -5872.09     310.29  -18.93   &lt;2e-16 ***
+flipper_length_mm    50.15       1.54   32.56   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 393.3 on 331 degrees of freedom
+Multiple R-squared:  0.7621,    Adjusted R-squared:  0.7614 
+F-statistic:  1060 on 1 and 331 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-wrangling-7" class="slide level2" data-menu-title="ANOVA">
+<h2>Data wrangling</h2>
+<p>Basic steps: Explore, Tidy, Summarize, <span style="color:#edea2b"><strong>Analyze</strong></span></p>
+<ul>
+<li>How does penguin body mass change with flipper length?</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Plot</a></li><li><a href="#tabset-3-2">Model fit</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">with</span>(df, <span class="fu">plot</span>(<span class="at">x=</span>species, <span class="at">y=</span>body_mass_g))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-16-1.png" width="576"></p>
+</div>
+</div>
+</div>
+<div id="tabset-3-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Apply a simple linear model with an ANOVA test</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>lm_mod  <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g<span class="sc">~</span>species, <span class="at">data=</span>df)</span>
+<span id="cb16-3"><a href="#cb16-3"></a>aov_mod <span class="ot">&lt;-</span> <span class="fu">aov</span>(lm_mod)</span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="fu">summary</span>(aov_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Df    Sum Sq  Mean Sq F value Pr(&gt;F)    
+species       2 145190219 72595110   341.9 &lt;2e-16 ***
+Residuals   330  70069447   212332                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-1---data-wrangling" class="slide level2" data-background="#ffffff" data-menu-title="Exercise1">
+<h2>Exercise 1 - Data wrangling:</h2>
+<ul>
+<li><p>The <code>USArrests</code> dataset provides data on the number of arrests per 100,000 residents for violent crimes (assault, murder, and rape) in each of the 50 US states in 1973.</p></li>
+<li><p>First, assign the crime data to an object called <code>crime</code> and add the row names as a varaible</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>crime <span class="ot">&lt;-</span> USArrests</span>
+<span id="cb18-2"><a href="#cb18-2"></a>crime <span class="ot">&lt;-</span> <span class="fu">rownames_to_column</span>(crime, <span class="st">'State'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>Using that data, try the following:</p>
+<ol type="1">
+<li>Calculate average number of arrests for assault.</li>
+<li>Identify maximum number of arrests for assault.</li>
+<li>Print the statistics for Pennsylvania.</li>
+<li>Was there a linear relationship between murders and assaults?</li>
+</ol></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>How did you do?</li>
+</ul>
+</div>
+<div class="absolute" style="bottom: 0px; right: 0px; ">
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_07fc40fd" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-1---data-wrangling-1" class="slide level2" data-background="#ffffff" data-menu-title="Exercise1">
+<h2>Exercise 1 - Data wrangling:</h2>
+<ul>
+<li>Calculate average number of arrests for assault:</li>
+</ul>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">rbind</span>(</span>
+<span id="cb19-2"><a href="#cb19-2"></a>    <span class="fu">mean</span>(crime<span class="sc">$</span>Assault),</span>
+<span id="cb19-3"><a href="#cb19-3"></a>    <span class="fu">mean</span>(crime[,<span class="dv">3</span>]),</span>
+<span id="cb19-4"><a href="#cb19-4"></a>    <span class="fu">sum</span>(crime<span class="sc">$</span>Assault)<span class="sc">/</span><span class="fu">length</span>(crime<span class="sc">$</span>Assault)</span>
+<span id="cb19-5"><a href="#cb19-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       [,1]
+[1,] 170.76
+[2,] 170.76
+[3,] 170.76</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">summarize</span>(crime, <span class="fu">mean</span>(Assault))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean(Assault)
+1        170.76</code></pre>
+</div>
+</div>
+</section>
+<section id="exercise-1---data-wrangling-2" class="slide level2" data-background="#ffffff" data-menu-title="Exercise1">
+<h2>Exercise 1 - Data wrangling:</h2>
+<ul>
+<li>Calculate average number of arrests for assault:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">max</span>(crime<span class="sc">$</span>Assault)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 337</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(crime<span class="sc">$</span>Assault, <span class="at">decreasing=</span><span class="cn">TRUE</span>)</span>
+<span id="cb25-2"><a href="#cb25-2"></a>x[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 337</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">summarize</span>(crime, <span class="fu">max</span>(Assault))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  max(Assault)
+1          337</code></pre>
+</div>
+</div>
+</section>
+<section id="exercise-1---data-wrangling-3" class="slide level2" data-background="#ffffff" data-menu-title="Exercise1">
+<h2>Exercise 1 - Data wrangling:</h2>
+<ul>
+<li>Print the statistics for Pennsylvania:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">rbind</span>(</span>
+<span id="cb29-2"><a href="#cb29-2"></a>    crime[crime<span class="sc">$</span>State<span class="sc">==</span><span class="st">'Pennsylvania'</span>,],</span>
+<span id="cb29-3"><a href="#cb29-3"></a>    crime[<span class="dv">38</span>,]</span>
+<span id="cb29-4"><a href="#cb29-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           State Murder Assault UrbanPop Rape
+38  Pennsylvania    6.3     106       72 14.9
+381 Pennsylvania    6.3     106       72 14.9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">filter</span>(crime, State<span class="sc">==</span><span class="st">'Pennsylvania'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         State Murder Assault UrbanPop Rape
+1 Pennsylvania    6.3     106       72 14.9</code></pre>
+</div>
+</div>
+</section>
+<section id="exercise-1---data-wrangling-4" class="slide level2" data-background="#ffffff" data-menu-title="Exercise1">
+<h2>Exercise 1 - Data wrangling:</h2>
+<ul>
+<li>Was there a linear relationship between murders and assaults?</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Plot</a></li><li><a href="#tabset-4-2">Model fit</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">with</span>(crime, <span class="fu">plot</span>(<span class="at">x=</span>Assault, <span class="at">y=</span>Murder))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-25-1.png" width="576"></p>
+</div>
+</div>
+</div>
+<div id="tabset-4-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># Apply a simple linear model</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>lm_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Murder<span class="sc">~</span>Assault, <span class="at">data=</span>crime)</span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="fu">summary</span>(lm_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Murder ~ Assault, data = crime)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.8528 -1.7456 -0.3979  1.3044  7.9256 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 0.631683   0.854776   0.739    0.464    
+Assault     0.041909   0.004507   9.298  2.6e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.629 on 48 degrees of freedom
+Multiple R-squared:  0.643, Adjusted R-squared:  0.6356 
+F-statistic: 86.45 on 1 and 48 DF,  p-value: 2.596e-12</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="topic-4" class="title-slide slide level1 center" data-menu-title="Topic 4">
+<h1>Topic 4</h1>
+<p><span style="font-size: 1.5em; text-align: center">Piping methods</span></p>
+</section>
+<section id="topic-4-piping-methods" class="slide level2" data-menu-title="magrittr">
+<h2>Topic 4: Piping methods</h2>
+<ul>
+<li><p>Core packages - dplyr, forcats, ggplot2, purrr, readr, tibble, tidyr, stringr</p></li>
+<li><p><code>dplyr</code> package:</p>
+<ul>
+<li>Introduces consistent set of functions (verbs)</li>
+<li>Applied across all Tidyverse packages</li>
+</ul></li>
+<li><p><code>magrittr</code> package:</p>
+<ul>
+<li>Pipe operator (%&gt;%)</li>
+<li>Forwards an object, into a function</li>
+</ul></li>
+</ul>
+<p><img data-src="images/magrittr_hex.png" class="absolute" style="bottom: 0px; right: 0px; width: 250px; "></p>
+</section>
+<section id="topic-4-piping-methods-1" class="slide level2" data-menu-title="pipes">
+<h2>Topic 4: Piping methods</h2>
+<ul>
+<li>What if we wanted to summarize the data frame we created earlier?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36" data-code-line-numbers="1-10|12-19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="co"># Descriptive statistics - by groups</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a><span class="co"># Summarize the bill length variable</span></span>
+<span id="cb36-3"><a href="#cb36-3"></a>df_group <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df_sub, species)    <span class="co"># Create a grouped data frame</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a></span>
+<span id="cb36-5"><a href="#cb36-5"></a><span class="fu">summarize</span>(df_group,                      <span class="co"># Summarize input value</span></span>
+<span id="cb36-6"><a href="#cb36-6"></a>          <span class="at">avg_bill=</span><span class="fu">mean</span>(bill_length_mm),</span>
+<span id="cb36-7"><a href="#cb36-7"></a>          <span class="at">max_bill=</span><span class="fu">max</span>(bill_length_mm),</span>
+<span id="cb36-8"><a href="#cb36-8"></a>          <span class="at">min_bill=</span><span class="fu">min</span>(bill_length_mm),</span>
+<span id="cb36-9"><a href="#cb36-9"></a>          <span class="at">sd_bill=</span><span class="fu">sd</span>(bill_length_mm),</span>
+<span id="cb36-10"><a href="#cb36-10"></a>          <span class="at">n_bill=</span><span class="fu">length</span>(bill_length_mm))</span>
+<span id="cb36-11"><a href="#cb36-11"></a></span>
+<span id="cb36-12"><a href="#cb36-12"></a><span class="co"># Summarize the bill length variable</span></span>
+<span id="cb36-13"><a href="#cb36-13"></a><span class="co"># Pipe df_group object into the summarize function</span></span>
+<span id="cb36-14"><a href="#cb36-14"></a>df_group <span class="sc">%&gt;%</span>  <span class="fu">summarize</span>(<span class="at">avg_bill=</span><span class="fu">mean</span>(bill_length_mm),</span>
+<span id="cb36-15"><a href="#cb36-15"></a>                        <span class="at">max_bill=</span><span class="fu">max</span>(bill_length_mm),</span>
+<span id="cb36-16"><a href="#cb36-16"></a>                        <span class="at">min_bill=</span><span class="fu">min</span>(bill_length_mm),</span>
+<span id="cb36-17"><a href="#cb36-17"></a>                        <span class="at">sd_bill=</span><span class="fu">sd</span>(bill_length_mm),</span>
+<span id="cb36-18"><a href="#cb36-18"></a>                        <span class="at">n_bill=</span><span class="fu">length</span>(bill_length_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="topic-4-piping-methods-2" class="slide level2" data-menu-title="magrittr">
+<h2>Topic 4: Piping methods</h2>
+<ul>
+<li><p>Core packages - dplyr, forcats, ggplot2, purrr, readr, tibble, tidyr, stringr</p></li>
+<li><p><code>dplyr</code> package:</p>
+<ul>
+<li>Introduces consistent set of functions (verbs)</li>
+<li>Applied across all Tidyverse packages</li>
+</ul></li>
+<li><p><code>magrittr</code> package:</p>
+<ul>
+<li>Pipe operator (%&gt;%)</li>
+<li>Forwards an object, into a function</li>
+<li>Perform multiple functions, without nesting, or creating multiple objects</li>
+</ul></li>
+</ul>
+<p><img data-src="images/magrittr_hex.png" class="absolute" style="bottom: 0px; right: 0px; width: 250px; "></p>
+</section>
+<section id="topic-4-piping-methods-3" class="slide level2" data-menu-title="magrittr">
+<h2>Topic 4: Piping methods</h2>
+<ul>
+<li><p>For example, in our penguin dataset, let’s say we’re interested in the average body mass measured in 2008, based on penguin species.</p></li>
+<li><p>Three basic approaches:</p></li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Multiple objects</a></li><li><a href="#tabset-5-2">Nested functions</a></li><li><a href="#tabset-5-3">Piping</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>a <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, year<span class="sc">==</span><span class="dv">2008</span>)</span>
+<span id="cb37-2"><a href="#cb37-2"></a>b <span class="ot">&lt;-</span> <span class="fu">group_by</span>(a, species)</span>
+<span id="cb37-3"><a href="#cb37-3"></a>c <span class="ot">&lt;-</span> <span class="fu">summarize</span>(b,</span>
+<span id="cb37-4"><a href="#cb37-4"></a>               <span class="at">Avg=</span><span class="fu">mean</span>(body_mass_g))</span>
+<span id="cb37-5"><a href="#cb37-5"></a>d <span class="ot">&lt;-</span> <span class="fu">arrange</span>(c, <span class="fu">desc</span>(Avg))</span>
+<span id="cb37-6"><a href="#cb37-6"></a><span class="fu">print</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  species     Avg
+  &lt;fct&gt;     &lt;dbl&gt;
+1 Gentoo    5028.
+2 Chinstrap 3800 
+3 Adelie    3742 </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">arrange</span>(</span>
+<span id="cb39-2"><a href="#cb39-2"></a>    <span class="fu">summarize</span>(</span>
+<span id="cb39-3"><a href="#cb39-3"></a>        <span class="fu">group_by</span>(</span>
+<span id="cb39-4"><a href="#cb39-4"></a>            <span class="fu">filter</span>(df,year<span class="sc">==</span><span class="dv">2008</span>),</span>
+<span id="cb39-5"><a href="#cb39-5"></a>            species),</span>
+<span id="cb39-6"><a href="#cb39-6"></a>        <span class="at">Avg =</span> <span class="fu">mean</span>(body_mass_g)),</span>
+<span id="cb39-7"><a href="#cb39-7"></a>    <span class="fu">desc</span>(Avg)</span>
+<span id="cb39-8"><a href="#cb39-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  species     Avg
+  &lt;fct&gt;     &lt;dbl&gt;
+1 Gentoo    5028.
+2 Chinstrap 3800 
+3 Adelie    3742 </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-3">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># magrittr pipe</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="#cb41-3"></a>    <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2008</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-4"><a href="#cb41-4"></a>    <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb41-5"><a href="#cb41-5"></a>    <span class="fu">summarize</span>(<span class="at">Avg=</span><span class="fu">mean</span>(body_mass_g)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-6"><a href="#cb41-6"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(Avg))</span>
+<span id="cb41-7"><a href="#cb41-7"></a></span>
+<span id="cb41-8"><a href="#cb41-8"></a><span class="co"># native pipe</span></span>
+<span id="cb41-9"><a href="#cb41-9"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb41-10"><a href="#cb41-10"></a>    <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2008</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb41-11"><a href="#cb41-11"></a>    <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
+<span id="cb41-12"><a href="#cb41-12"></a>    <span class="fu">summarize</span>(<span class="at">Avg=</span><span class="fu">mean</span>(body_mass_g)) <span class="sc">|&gt;</span> </span>
+<span id="cb41-13"><a href="#cb41-13"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(Avg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  species     Avg
+  &lt;fct&gt;     &lt;dbl&gt;
+1 Gentoo    5028.
+2 Chinstrap 3800 
+3 Adelie    3742 </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2---data-wrangling" class="slide level2" data-background="#ffffff" data-menu-title="Exercise2">
+<h2>Exercise 2 - Data wrangling:</h2>
+<ul>
+<li><p>The <span style="color:#edea2b">Long Term Ecological Research (LTER)</span> program was started by the National Science Foundation in the late 70’s. Data from LTER are publicly available.</p></li>
+<li><p>One study recorded the size of fiddler crabs in 2016 in salt marshes from Florida to Massachusetts.</p></li>
+<li><p>First, load <span style="color:#edea2b">crabs.csv</span> in the data folder and try the following:</p>
+<ol type="1">
+<li>Using piping methods, <code>tidy</code> the data.</li>
+<li>Summarize crab size by site.</li>
+</ol></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Next, determine if the data supports <span style="color:#edea2b">“Bergmann’s rule”</span>, which predicts that organisms at higher latitudes are larger than ones at lower latitudes, by finishing the following script:</li>
+</ul>
+<div class="column" style="width:60%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>crabs <span class="sc">|&gt;</span> </span>
+<span id="cb43-2"><a href="#cb43-2"></a>    <span class="fu">group_by</span>(???) <span class="sc">|&gt;</span> </span>
+<span id="cb43-3"><a href="#cb43-3"></a>    <span class="fu">summarize</span>(???) <span class="sc">|&gt;</span> </span>
+<span id="cb43-4"><a href="#cb43-4"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>latitude,<span class="at">y=</span>avg_size)) <span class="sc">+</span> </span>
+<span id="cb43-5"><a href="#cb43-5"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a>    <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>How did you do?</li>
+</ul>
+</div>
+<div class="absolute" style="bottom: 0px; right: 0px; ">
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_b511fa13" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2---data-wrangling-1" class="slide level2" data-background="#ffffff" data-menu-title="Exercise1">
+<h2>Exercise 2 - Data wrangling:</h2>
+<ul>
+<li>How did you do?</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Part 1 - Tidy</a></li><li><a href="#tabset-6-2">Part 1 - Summarize</a></li><li><a href="#tabset-6-3">Part 2</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44" data-code-line-numbers="1-5|7-11|13-20|1-20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="co"># Load LTER data</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>crabs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'data/crabs.csv'</span>)</span>
+<span id="cb44-3"><a href="#cb44-3"></a></span>
+<span id="cb44-4"><a href="#cb44-4"></a><span class="co"># Check quick summary for variables with NAs</span></span>
+<span id="cb44-5"><a href="#cb44-5"></a>crabs <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span>
+<span id="cb44-6"><a href="#cb44-6"></a></span>
+<span id="cb44-7"><a href="#cb44-7"></a><span class="co"># Check for duplicate observations</span></span>
+<span id="cb44-8"><a href="#cb44-8"></a>crabs <span class="sc">|&gt;</span> <span class="fu">duplicated</span>()</span>
+<span id="cb44-9"><a href="#cb44-9"></a></span>
+<span id="cb44-10"><a href="#cb44-10"></a><span class="co"># Check how many observations at each site</span></span>
+<span id="cb44-11"><a href="#cb44-11"></a>crabs <span class="sc">|&gt;</span> <span class="fu">group_by</span>(site) <span class="sc">|&gt;</span> <span class="fu">count</span>()</span>
+<span id="cb44-12"><a href="#cb44-12"></a></span>
+<span id="cb44-13"><a href="#cb44-13"></a><span class="co"># Clean up the data</span></span>
+<span id="cb44-14"><a href="#cb44-14"></a>crabs <span class="ot">&lt;-</span> crabs <span class="sc">|&gt;</span> </span>
+<span id="cb44-15"><a href="#cb44-15"></a>  <span class="fu">drop_na</span>(size) <span class="sc">|&gt;</span> </span>
+<span id="cb44-16"><a href="#cb44-16"></a>  <span class="fu">distinct</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb44-17"><a href="#cb44-17"></a>  <span class="fu">mutate</span>(<span class="at">site=</span><span class="fu">case_when</span>(</span>
+<span id="cb44-18"><a href="#cb44-18"></a>    site <span class="sc">==</span> <span class="st">'PI'</span> <span class="sc">~</span> <span class="st">'PIE'</span>,</span>
+<span id="cb44-19"><a href="#cb44-19"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> site</span>
+<span id="cb44-20"><a href="#cb44-20"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-6-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="co"># Summarize crab size by site</span></span>
+<span id="cb45-2"><a href="#cb45-2"></a>crabs <span class="sc">|&gt;</span> </span>
+<span id="cb45-3"><a href="#cb45-3"></a>  <span class="fu">group_by</span>(site) <span class="sc">|&gt;</span> </span>
+<span id="cb45-4"><a href="#cb45-4"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb45-5"><a href="#cb45-5"></a>    <span class="at">avg_size=</span><span class="fu">mean</span>(size),</span>
+<span id="cb45-6"><a href="#cb45-6"></a>    <span class="at">min_size=</span><span class="fu">min</span>(size),</span>
+<span id="cb45-7"><a href="#cb45-7"></a>    <span class="at">max_size=</span><span class="fu">max</span>(size),</span>
+<span id="cb45-8"><a href="#cb45-8"></a>    <span class="at">sd_size=</span><span class="fu">sd</span>(size),</span>
+<span id="cb45-9"><a href="#cb45-9"></a>    <span class="at">n=</span><span class="fu">n</span>()</span>
+<span id="cb45-10"><a href="#cb45-10"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-6-3">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="co"># Does the data support Bergmann’s rule</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a>crabs <span class="sc">|&gt;</span> </span>
+<span id="cb46-3"><a href="#cb46-3"></a>    <span class="fu">group_by</span>(site, latitude) <span class="sc">|&gt;</span> </span>
+<span id="cb46-4"><a href="#cb46-4"></a>    <span class="fu">summarize</span>(<span class="at">avg_size=</span><span class="fu">mean</span>(size)) <span class="sc">|&gt;</span> </span>
+<span id="cb46-5"><a href="#cb46-5"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>latitude,<span class="at">y=</span>avg_size)) <span class="sc">+</span> </span>
+<span id="cb46-6"><a href="#cb46-6"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb46-7"><a href="#cb46-7"></a>    <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="review---data-wrangling-in-r" class="slide level2" data-background="#000000" data-menu-title="Review 4 - Data">
+<h2>Review - Data wrangling in R:</h2>
+<ul>
+<li>RStudio Projects can help to <span style="color:#edea2b"><strong>enhance reproducibility</strong></span> if <em>paths within scripts are kept relative</em>. <img data-src="images/relocate.png" class="absolute" style="left: 0px; bottom: 0px; height: 210px; "> <img data-src="images/rename.png" class="absolute" style="left: 310px; bottom: 0px; height: 210px; "> <img data-src="images/filter.png" class="absolute" style="bottom: 0px; right: 0px; height: 210px; "></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Data wrangling = Explore, Tidy, Summarize, &amp; Analyze</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><code>Tidyverse</code> packages provide a consistent language (functions) and grammar (arguments).</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>A <span style="color:#edea2b"><strong>piping workflow</strong></span> passes objects into data argument of functions</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="topic-5" class="title-slide slide level1 center" data-menu-title="Topic 5">
+<h1>Topic 5</h1>
+<p><span style="font-size: 1.5em; text-align: center">Extras - Additional Resources</span></p>
+</section>
+<section id="topic-5-additional-resources" class="slide level2" data-menu-title="Additional Resources">
+<h2>Topic 5: Additional Resources</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li><p>Upcoming workshops (*via Zoom):</p>
+<ul>
+<li>Data vizualization with R (3/21, 3/24*)</li>
+<li>Shiny Apps in R (3/28, 3/31*)</li>
+</ul></li>
+<li><p><a href="https://lehigh-home.slack.com/archives/C04AE4B9X0S">Lehigh’s R Programming Slack Channel</a></p></li>
+</ul>
+<div class="fragment">
+<ul>
+<li><p>External resources:</p>
+<ul>
+<li><a href="https://r4ds.had.co.nz/">R for Data Science - Book</a></li>
+<li><a href="https://rfordatascience.slack.com">R for Data Science - Slack Workspace</a></li>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/">RStudio Cheat Sheets</a></li>
+<li><a href="https://www.t4rstats.com/follow-some-folks.html">Twitter for R Programmers</a></li>
+<li><a href="https://www.linkedin.com/learning/search?keywords=r%20programming&amp;u=2222241">LinkedIn Learning</a></li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/tidyverse2.png"></p>
+</div>
+</div>
 <div class="footer footer-default">
 
 </div>
@@ -633,6 +1517,48 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          // dispatch for htmlwidgets
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for reveal
+        if (window.Reveal) {
+          window.Reveal.addEventListener("slidechanged", function(event) {
+            fireSlideChanged(event.previousSlide, event.currentSlide);
+          });
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
