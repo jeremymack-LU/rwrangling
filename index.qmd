@@ -608,7 +608,7 @@ df_group %>%  summarize(avg_bill=mean(bill_length_mm),
                         n_bill=length(bill_length_mm))
 ```
 
-## Topic 4: Piping methods {data-menu-title="magrittr"}
+## Topic 4: Piping methods {data-menu-title="piping methods"}
 -   Core packages - dplyr, forcats, ggplot2, purrr, readr, tibble, tidyr, stringr
 
 -   `dplyr` package:
@@ -618,9 +618,11 @@ df_group %>%  summarize(avg_bill=mean(bill_length_mm),
 
 -   `magrittr` package:
 
-    - Pipe operator (%>%)
+    - Pipe operator (`%>%`)
     - Forwards an object, into a function
     - Perform multiple functions, without nesting, or creating multiple objects
+
+-   `base` R added support for pipe operations (`|>`)
 
 ![](images/magrittr_hex.png){.absolute bottom="0" right="0" width="250"}
 
@@ -685,17 +687,17 @@ df |>
 :::
 
 ## Exercise 2 - Data wrangling: {data-background="#ffffff" data-menu-title="Exercise2"}
--   The [Long Term Ecological Research (LTER)]{style="color:#edea2b"} program was started by the National Science Foundation in the late 70's. Data from LTER are publicly available.
+-   The [**Long Term Ecological Research (LTER)**]{style="color:#1320b0"} program was started by the National Science Foundation in the late 70's. Data from LTER are publicly available.
 
 -   One study recorded the size of fiddler crabs in 2016 in salt marshes from Florida to Massachusetts.
 
--   First, load [crabs.csv]{style="color:#edea2b"} in the data folder and try the following:
+-   First, load [**crabs.csv**]{style="color:#1320b0"} in the data folder and try the following:
 
     1. Using piping methods, `tidy` the data.
     2. Summarize crab size by site.
 
 ::: fragment
--   Next, determine if the data supports ["Bergmann’s rule"]{style="color:#edea2b"}, which predicts that organisms at higher latitudes are larger than ones at lower latitudes, by finishing the following script:
+-   Next, determine if the data supports [**"Bergmann’s rule"**]{style="color:#1320b0"}, which predicts that organisms at higher latitudes are larger than ones at lower latitudes, by finishing the following script:
 
 :::{.column width="60%"}
 ```{r}
@@ -721,7 +723,7 @@ countdown::countdown(5L)
 ```
 :::
 
-## Exercise 2 - Data wrangling: {data-background="#ffffff" data-menu-title="Exercise1"}
+## Exercise 2 - Data wrangling: {data-background="#ffffff" data-menu-title="Exercise2"}
 -   How did you do?
 
 :::panel-tabset

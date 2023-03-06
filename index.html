@@ -876,7 +876,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="absolute" style="bottom: 0px; right: 0px; ">
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_07fc40fd" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_7f9eae50" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1051,7 +1051,7 @@ F-statistic: 86.45 on 1 and 48 DF,  p-value: 2.596e-12</code></pre>
 <span id="cb36-18"><a href="#cb36-18"></a>                        <span class="at">n_bill=</span><span class="fu">length</span>(bill_length_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="topic-4-piping-methods-2" class="slide level2" data-menu-title="magrittr">
+<section id="topic-4-piping-methods-2" class="slide level2" data-menu-title="piping methods">
 <h2>Topic 4: Piping methods</h2>
 <ul>
 <li><p>Core packages - dplyr, forcats, ggplot2, purrr, readr, tibble, tidyr, stringr</p></li>
@@ -1062,10 +1062,11 @@ F-statistic: 86.45 on 1 and 48 DF,  p-value: 2.596e-12</code></pre>
 </ul></li>
 <li><p><code>magrittr</code> package:</p>
 <ul>
-<li>Pipe operator (%&gt;%)</li>
+<li>Pipe operator (<code>%&gt;%</code>)</li>
 <li>Forwards an object, into a function</li>
 <li>Perform multiple functions, without nesting, or creating multiple objects</li>
 </ul></li>
+<li><p><code>base</code> R added support for pipe operations (<code>|&gt;</code>)</p></li>
 </ul>
 <p><img data-src="images/magrittr_hex.png" class="absolute" style="bottom: 0px; right: 0px; width: 250px; "></p>
 </section>
@@ -1149,9 +1150,9 @@ F-statistic: 86.45 on 1 and 48 DF,  p-value: 2.596e-12</code></pre>
 <section id="exercise-2---data-wrangling" class="slide level2" data-background="#ffffff" data-menu-title="Exercise2">
 <h2>Exercise 2 - Data wrangling:</h2>
 <ul>
-<li><p>The <span style="color:#edea2b">Long Term Ecological Research (LTER)</span> program was started by the National Science Foundation in the late 70’s. Data from LTER are publicly available.</p></li>
+<li><p>The <span style="color:#1320b0"><strong>Long Term Ecological Research (LTER)</strong></span> program was started by the National Science Foundation in the late 70’s. Data from LTER are publicly available.</p></li>
 <li><p>One study recorded the size of fiddler crabs in 2016 in salt marshes from Florida to Massachusetts.</p></li>
-<li><p>First, load <span style="color:#edea2b">crabs.csv</span> in the data folder and try the following:</p>
+<li><p>First, load <span style="color:#1320b0"><strong>crabs.csv</strong></span> in the data folder and try the following:</p>
 <ol type="1">
 <li>Using piping methods, <code>tidy</code> the data.</li>
 <li>Summarize crab size by site.</li>
@@ -1159,7 +1160,7 @@ F-statistic: 86.45 on 1 and 48 DF,  p-value: 2.596e-12</code></pre>
 </ul>
 <div class="fragment">
 <ul>
-<li>Next, determine if the data supports <span style="color:#edea2b">“Bergmann’s rule”</span>, which predicts that organisms at higher latitudes are larger than ones at lower latitudes, by finishing the following script:</li>
+<li>Next, determine if the data supports <span style="color:#1320b0"><strong>“Bergmann’s rule”</strong></span>, which predicts that organisms at higher latitudes are larger than ones at lower latitudes, by finishing the following script:</li>
 </ul>
 <div class="column" style="width:60%;">
 <div class="cell">
@@ -1180,7 +1181,7 @@ F-statistic: 86.45 on 1 and 48 DF,  p-value: 2.596e-12</code></pre>
 <div class="absolute" style="bottom: 0px; right: 0px; ">
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_b511fa13" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_96d925ff" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1188,7 +1189,7 @@ F-statistic: 86.45 on 1 and 48 DF,  p-value: 2.596e-12</code></pre>
 </div>
 </div>
 </section>
-<section id="exercise-2---data-wrangling-1" class="slide level2" data-background="#ffffff" data-menu-title="Exercise1">
+<section id="exercise-2---data-wrangling-1" class="slide level2" data-background="#ffffff" data-menu-title="Exercise2">
 <h2>Exercise 2 - Data wrangling:</h2>
 <ul>
 <li>How did you do?</li>
