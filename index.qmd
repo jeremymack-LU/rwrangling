@@ -602,11 +602,12 @@ summarize(df_group,                      # Summarize input value
 
 # Summarize the bill length variable
 # Pipe df_group object into the summarize function
-df_group %>%  summarize(avg_bill=mean(bill_length_mm),
-                        max_bill=max(bill_length_mm),
-                        min_bill=min(bill_length_mm),
-                        sd_bill=sd(bill_length_mm),
-                        n_bill=length(bill_length_mm))
+df_group %>%  
+  summarize(avg_bill=mean(bill_length_mm),
+            max_bill=max(bill_length_mm),
+            min_bill=min(bill_length_mm),
+            sd_bill=sd(bill_length_mm),
+            n_bill=length(bill_length_mm))
 ```
 
 ## Topic 4: Piping methods {data-menu-title="piping methods"}
