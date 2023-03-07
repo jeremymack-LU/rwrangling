@@ -260,7 +260,7 @@ dim (df)                          # Dimensions (rows x columns)
 
 rownames(df)                      # Print row names
 
-colnames(df)                      # Print column names
+colnames(df); names(df)           # Print column names
 
 complete.cases(df)                # Check if observations are complete
 
@@ -279,15 +279,17 @@ Basic steps: Explore, [**Tidy**]{style="color:#edea2b"}, Summarize, Analyze
 ```{r}
 #| echo: true
 #| eval: false
-# Check if observations are complete
-complete.cases(df)
-
 # Remove incomplete observations
 df_sub  <- drop_na(df)
 df_sub  <- na.omit(df)               
 
-# Remove specific NAs
+# Remove specific variable NAs
 df_sub2 <- drop_na(df, bill_length_mm)
+
+c(nrow(df),nrow(df_sub),nrow(df_sub2))
+
+# Remove from original dataset
+df      <- drop_na(df)
 ```
 ### Data mistakes
 ```{r}
@@ -297,7 +299,7 @@ df_sub2 <- drop_na(df, bill_length_mm)
 unique(df$penguin); levels(factor(df$penguin))
 
 # Fix extra white space
-df <- mutate(df, penguin=str_squish(df$penguin))
+df <- mutate(df, penguin=str_squish(penguin))
 
 # Fix spelling mistakes
 df <- mutate(df,
@@ -346,12 +348,11 @@ Basic steps: Explore, Tidy, [**Summarize**]{style="color:#edea2b"}, Analyze
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "1-9|11-19|21-22"
+#| code-line-numbers: "1-2|4-8|10-18|20-21"
 # Descriptive statistics - overall
 summary(df)                              # Quick overall summary of input values
 
-mean(df$bill_length_mm)                  # Average of input value
-mean(df$bill_length_mm, na.rm=TRUE)
+mean(df$bill_length_mm, na.rm=TRUE)      # Average of input value
 max(df$bill_length_mm, na.rm=TRUE)       # Maximum of input value
 min(df$bill_length_mm, na.rm=TRUE)       # Minimum of input value
 sd(df$bill_length_mm, na.rm=TRUE)        # Standard deviation of input value
@@ -436,7 +437,7 @@ Basic steps: Explore, Tidy, Summarize, [**Analyze**]{style="color:#edea2b"}
 ```{r}
 #| echo: true
 #| eval: false
-with(df, plot(x=species, y=body_mass_g))
+with(df, plot(x=factor(species), y=body_mass_g))
 ```
 
 ```{r}
@@ -590,7 +591,7 @@ summary(lm_mod)
 #| code-line-numbers: "1-10|12-19"
 # Descriptive statistics - by groups
 # Summarize the bill length variable
-df_group <- group_by(df_sub, species)    # Create a grouped data frame
+df_group <- group_by(df, species)        # Create a grouped data frame
 
 summarize(df_group,                      # Summarize input value
           avg_bill=mean(bill_length_mm),

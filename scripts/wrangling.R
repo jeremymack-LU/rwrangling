@@ -1,7 +1,14 @@
-#
+# Script summary ----------------------------------------------------------
 # Script for workshop on data wrangling with R
 # Updated - March 6, 2023
 #
+# RStudio Projects --------------------------------------------------------
+# Read data from absolute path
+mpg <- read.csv('C:/Users/jsm4/Desktop/r_wrangling/data/mpg.csv')
+
+# Read data from relative path
+mpg <- read.csv('data/mpg.csv')
+
 # Load packages -----------------------------------------------------------
 # Install all Tidyverse packages
 install.packages("tidyverse")     # Bulk tidyverse
@@ -22,19 +29,19 @@ nrow(df)                          # Number of rows (observations)
 ncol(df)                          # Number of columns (variables)
 dim (df)                          # Dimensions (rows x columns)
 rownames(df)                      # Print row names
-colnames(df)                      # Print column names
+colnames(df); names(df)           # Print column names
 complete.cases(df)                # Check if observations are complete
 duplicated(df)                    # Check if observations are duplicated
 # Tidy --------------------------------------------------------------------
 # Missing data
-complete.cases(df)                                      # Check if observations are complete
 df_sub  <- drop_na(df); df_sub <- na.omit(df)           # Remove incomplete observations
 df_sub2 <- drop_na(df, bill_length_mm)                  # Remove specific NAs
-df      <- drop_na(df)
+c(nrow(df),nrow(df_sub),nrow(df_sub2))                  # Compare observation numbers
+df      <- drop_na(df)                                  # Apply to original dataset
 
 # Data entry mistakes
 unique(df$penguin); levels(factor(df$penguin))          # Check unique groups
-df <- mutate(df, penguin=str_squish(df$penguin))        # Fix extra white space
+df <- mutate(df, penguin=str_squish(penguin))           # Fix extra white space
 df <- mutate(df,                                        # Fix spelling mistakes
              penguin=case_when(
                penguin == 'Pygoscelis papa' ~ 'Pygoscelis papua',
@@ -54,16 +61,18 @@ df_wide <- pivot_wider(df_long,                         # Long to wide form
                        names_from='measurement',
                        values_from='size')
 
+# Subset data
+df_subset <- filter(df, island=='Biscoe' & year==2008)
+
 # Summarize ---------------------------------------------------------------
 # Descriptive statistics - overall
-mean(df$bill_length_mm)                  # Average of input value
-mean(df$bill_length_mm, na.rm=TRUE)
+summary(df)                              # Quick overall summary of input values
+
+mean(df$bill_length_mm, na.rm=TRUE)      # Average of input value
 max(df$bill_length_mm, na.rm=TRUE)       # Maximum of input value
 min(df$bill_length_mm, na.rm=TRUE)       # Minimum of input value
 sd(df$bill_length_mm, na.rm=TRUE)        # Standard deviation of input value
 length(df$bill_length_mm)                # Set length of input value
-
-summary(df$bill_length_mm)               # Quick overall summary of input values
 
 # Descriptive statistics - by groups
 df_group <- group_by(df, species)        # Create a grouped data frame
@@ -84,7 +93,7 @@ lm_mod <- lm(body_mass_g~flipper_length_mm, data=df)
 summary(lm_mod)
 
 # Analysis of variance (ANOVA)
-with(df, plot(x=species, y=body_mass_g))
+with(df, plot(x=factor(species), y=body_mass_g))
 lm_mod  <- lm(body_mass_g~species, data=df)
 aov_mod <- aov(lm_mod)
 summary(aov_mod)
@@ -118,7 +127,7 @@ summary(lm_mod)
 # Piping methods ----------------------------------------------------------
 # Descriptive statistics - by groups
 # Summarize the bill length variable
-df_group <- group_by(df_sub, species)    # Create a grouped data frame
+df_group <- group_by(df, species)        # Create a grouped data frame
 
 summarize(df_group,                      # Summarize input value
           avg_bill=mean(bill_length_mm),
@@ -200,7 +209,7 @@ crabs |>
     n=n()
   )
 
-# 
+# Does the data support Bergmann’s rule
 crabs |> 
   group_by(site, latitude) |> 
   summarize(avg_size=mean(size)) |> 
