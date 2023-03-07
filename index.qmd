@@ -358,7 +358,7 @@ sd(df$bill_length_mm, na.rm=TRUE)        # Standard deviation of input value
 length(df$bill_length_mm)                # Set length of input value
 
 # Descriptive statistics - by groups
-df_group <- group_by(df_sub, species)    # Create a grouped data frame
+df_group <- group_by(df, species)        # Create a grouped data frame
 
 summarize(df_group,                      # Summarize input value
           avg_bill=mean(bill_length_mm),
