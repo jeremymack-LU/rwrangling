@@ -271,38 +271,6 @@ duplicated(df)                    # Check if observations are duplicated
 
 ![](images/penguins.png){.absolute bottom="0" right="0" width="250"}
 
-## Data wrangling {data-menu-title="Explore"}
-Basic steps: [**Explore**]{style="color:#edea2b"}, Tidy, Summarize, Analyze
-
--   Helpful functions:
-```{r}
-#| echo: true
-#| eval: false
-View(df)                          # View the data
-
-str (df)                          # Data structure
-
-head(df,5); slice_head(df,n=5)    # Print first five rows
-
-tail(df,5); slice_tail(df,n=5)    # Print last five rows
-
-nrow(df)                          # Number of rows (observations)
-
-ncol(df)                          # Number of columns (variables)
-
-dim (df)                          # Dimensions (rows x columns)
-
-rownames(df)                      # Print row names
-
-colnames(df); names(df)           # Print column names
-
-complete.cases(df)                # Check if observations are complete
-
-duplicated(df)                    # Check if observations are duplicated
-```
-
-![](images/penguins.png){.absolute bottom="0" right="0" width="250"}
-
 ## Data wrangling {data-menu-title="Tidy"}
 Basic steps: Explore, [**Tidy**]{style="color:#edea2b"}, Summarize, Analyze
 
