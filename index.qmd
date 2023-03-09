@@ -193,23 +193,23 @@ tidyverse_packages(include_self=FALSE)
 ```{r}
 #| echo: true
 #| eval: false
-filter(...)        # picks cases based on their values
+filter(...)        # Picks cases based on their values
 
-select(...)        # picks columns based on their names
+select(...)        # Picks columns based on their names
 
-slice(...)         # picks rows by position
+slice(...)         # Picks rows by position
 
-arrange(...)       # changes the ordering of rows
+arrange(...)       # Changes the ordering of rows
 
-group_by(...)      # allows operations by groups
+group_by(...)      # Allows operations by groups
 
-mutate(...)        # adds new variables to a dataset
+mutate(...)        # Adds new variables to a dataset, or transform existing
 
-summarise(...)     # summarise multiple values
+summarise(...)     # Summarise multiple values
 
-count(...)         # counts number of rows in a group
+count(...)         # Counts number of rows in a group
 
-add_row(...)       # add a row of data to a data frame
+add_row(...)       # Add a row of data to a data frame
 ```
 
 ![](images/dplyr_hex.png){.absolute bottom="0" right="0" width="250"}
@@ -236,6 +236,40 @@ df <- read_csv('data/penguins.csv')
 :::
 
 ![](images/data_cowboy.png){.absolute bottom="0" right="0" width="50%"}
+
+## Data wrangling {data-menu-title="Explore"}
+Basic steps: [**Explore**]{style="color:#edea2b"}, Tidy, Summarize, Analyze
+
+::: panel-tabset
+### Helpful functions
+```{r}
+#| echo: true
+#| eval: false
+View(df)                          # View the data
+
+str (df)                          # Data structure
+
+head(df,5); slice_head(df,n=5)    # Print first five rows
+
+tail(df,5); slice_tail(df,n=5)    # Print last five rows
+
+nrow(df)                          # Number of rows (observations)
+
+ncol(df)                          # Number of columns (variables)
+
+dim (df)                          # Dimensions (rows x columns)
+
+rownames(df)                      # Print row names
+
+colnames(df); names(df)           # Print column names
+
+complete.cases(df)                # Check if observations are complete
+
+duplicated(df)                    # Check if observations are duplicated
+```
+:::
+
+![](images/penguins.png){.absolute bottom="0" right="0" width="250"}
 
 ## Data wrangling {data-menu-title="Explore"}
 Basic steps: [**Explore**]{style="color:#edea2b"}, Tidy, Summarize, Analyze
@@ -272,9 +306,33 @@ duplicated(df)                    # Check if observations are duplicated
 ## Data wrangling {data-menu-title="Tidy"}
 Basic steps: Explore, [**Tidy**]{style="color:#edea2b"}, Summarize, Analyze
 
--   Helpful functions:
-
 ::: panel-tabset
+### Helpful functions
+```{r}
+#| echo: true
+#| eval: false
+drop_na(...); na.omit(...)  # Remove observations with missing values
+
+unique(..)                  # Check unique values of a variable (character)
+
+levels(factor(...))         # Check unique levels of a variable (factor)
+
+mutate(...)                 # Adds new variables to a dataset, or transform existing
+
+case_when(...)              # Sequential "if else" statements
+
+str_squish(...)             # Remove extra white space
+
+str_split(...)              # Split strings
+
+distinct(...)               # Keep distinct observations
+
+rename(...)                 # Rename variables
+
+relocate(...)               # Relocate variables within data frame
+
+pivot_wider(...); pivot_longer(...) # Change overall data structure form
+```
 ### Missing data
 ```{r}
 #| echo: true
@@ -344,11 +402,29 @@ df_subset <- filter(df, island=='Biscoe' & year==2008)
 ## Data wrangling {data-menu-title="Summarize"}
 Basic steps: Explore, Tidy, [**Summarize**]{style="color:#edea2b"}, Analyze
 
--   Helpful functions:
+::: panel-tabset
+### Helpful functions
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "1-2|4-8|10-18|20-21"
+summary(...)              # Quick overall summary of variables
+
+mean(...)                 # Mean value of variable
+
+median(...)               # Median value of variable
+
+max(...)                  # Maximum value of variable
+
+min(...)                  # Minimum value of variable
+
+length(...); count(...)   # Get number of columns or rows
+
+group_by(...)             # Applying functions across groups
+```
+### Summary
+```{r}
+#| echo: true
+#| eval: false
 # Descriptive statistics - overall
 summary(df)                              # Quick overall summary of input values
 
@@ -357,27 +433,40 @@ max(df$bill_length_mm, na.rm=TRUE)       # Maximum of input value
 min(df$bill_length_mm, na.rm=TRUE)       # Minimum of input value
 sd(df$bill_length_mm, na.rm=TRUE)        # Standard deviation of input value
 length(df$bill_length_mm)                # Set length of input value
-
+```
+### Grouped summary
+```{r}
+#| echo: true
+#| eval: false
 # Descriptive statistics - by groups
-df_group <- group_by(df, species)        # Create a grouped data frame
+# Create a grouped data frame
+df_group <- group_by(df, species)        
 
-summarize(df_group,                      # Summarize input value
+# Summarize variable
+summarize(df_group,                      
           avg_bill=mean(bill_length_mm),
           max_bill=max(bill_length_mm),
           min_bill=min(bill_length_mm),
           sd_bill=sd(bill_length_mm),
           n_bill=length(bill_length_mm))
 
+# Summarize across variables (clean data)
+summarize(df_group,
+          across(4:7, mean))
+
+# Summarize across variables (missing values present)
 summarize(df_group,
           across(4:7, ~mean(.x,na.rm=TRUE)))
 ```
+:::
 
 ![](images/penguins.png){.absolute bottom="0" right="0" width="250"}
 
 ## Data wrangling {data-menu-title="Analyze"}
 Basic steps: Explore, Tidy, Summarize, [**Analyze**]{style="color:#edea2b"}
 
--   Helpful functions:
+::: panel-tabset
+### Helpful functions
 ```{r}
 #| echo: true
 #| eval: false
@@ -391,6 +480,7 @@ aov(...)          # Analysis of variance test
 
 prop.test(...)    # Test for a difference between proportions
 ```
+:::
 
 ![](images/penguins.png){.absolute bottom="0" right="0" width="250"}
 
