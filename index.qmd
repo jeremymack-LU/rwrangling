@@ -87,6 +87,38 @@ The presentation is split into five topics:
 
 ## RStudio Projects {data-menu-title="RStudio Projects"}
 
+Basic steps to working with ([**wrangle**]{style="color:#edea2b"}) data in R:
+
+::: {.fragment .fade-out fragment-index=1}
+- Check or set a working directory.
+
+- Load data.
+
+- Wrangle data (Explore, Tidy, Summarize, and Analyze)!
+:::
+
+::: {.fragment .fade-in fragment-index=1}  
+::: {.absolute top="101" left="0"}
+- ~~Check or set a working directory.~~&nbsp;&nbsp;Set up an [**RStudio Project**]{style="color:#edea2b"}.
+
+- Load data.
+
+- Wrangle data (Explore, Tidy, Summarize, and Analyze)!
+:::
+![](images/rproject.png){.absolute top="0" right="0" width="33%"}
+![](images/cracked_setwd.png){.absolute bottom="0" right="0" width="33%"}
+:::
+
+::: fragment
+- **RStudio Projects**:
+
+    - [**Projects**]{style="color:#edea2b"} keep all files associated with a project together
+    - "Home" directory of the project becomes the current</br>working directory
+    - Projects can [**enhance reproducibility**]{style="color:#edea2b"} if *paths within scripts</br>are kept relative and not absolute*.
+:::
+
+## RStudio Projects {data-menu-title="RStudio Projects"}
+
 ![](images/rproject.png){.absolute top="0" right="0" width="33%"}
 ![](images/cracked_setwd.png){.absolute bottom="0" right="0" width="33%"}
 
